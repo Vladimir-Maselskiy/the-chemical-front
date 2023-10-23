@@ -32,8 +32,9 @@ export default function RootLayout({
               display="flex"
               flexDirection="column"
               alignItems="center"
+              minWidth={480}
             >
-              <Box width="100%" maxWidth={1440}>
+              <Box maxWidth={1440} width="100vw" minWidth={480}>
                 <Header />
                 {children}
               </Box>

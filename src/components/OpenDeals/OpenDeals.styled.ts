@@ -4,14 +4,6 @@ type TStyledItemProps = {
   img: string;
 };
 
-export const StyledHome = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 1024px;
-  background: url('/image 60.png'), lightgray 50% / cover no-repeat;
-`;
 export const StyledTitle = styled.p`
   color: var(--first-bg-color);
   font-size: 28px;
@@ -40,6 +32,9 @@ export const StyledItem = styled.li<TStyledItemProps>`
   background-image: ${p => `url("./${p.img}")`};
   background-position: 50% 55%;
   padding: 0 14px 20px;
+  @media screen and (max-width: 1024px) {
+    width: calc((100% - 20px));
+  }
 `;
 
 export const StyledItemDescription = styled.div`

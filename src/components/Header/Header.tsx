@@ -19,18 +19,27 @@ export const Header = () => {
   return (
     <Box
       display="flex"
-      justifyContent="flex-end"
-      width={1440}
-      minWidth={290}
+      justifyContent="center"
+      width="100vw"
+      minWidth={480}
+      minHeight={82}
       position="fixed"
       top={0}
+      left={0}
       zIndex={1}
       py={18}
       pr={80}
       backgroundColor="var(--black-background-color)"
     >
-      <Box display="flex" alignItems="center">
-        {user ? <LogOutButton /> : <AuthButtons />}
+      <Box
+        display="flex"
+        justifyContent="flex-end"
+        width="100%"
+        maxWidth={1440}
+      >
+        <Box display="flex" alignItems="center" maxWidth={1440}>
+          {user ? <LogOutButton /> : <AuthButtons />}
+        </Box>
       </Box>
     </Box>
   );

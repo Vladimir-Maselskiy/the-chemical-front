@@ -7,6 +7,9 @@ export const StyledHome = styled.div`
   width: 100%;
   height: 1024px;
   background: url('/image 60.png'), lightgray 50% / cover no-repeat;
+  @media screen and (max-width: 1200px) {
+    padding: 0 50px;
+  }
 `;
 export const HeroStyledWrapper = styled.div`
   display: flex;
