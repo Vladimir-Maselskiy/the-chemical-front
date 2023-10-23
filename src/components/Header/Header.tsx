@@ -1,30 +1,24 @@
 'use client';
 import React from 'react';
 import { Box } from '../Box/Box';
-import { NavBar } from '../NavBar/NavBar';
+import { AuthButtons } from '../AuthButtons/AuthButtons';
 
 export const Header = () => {
   return (
     <Box
+      display="flex"
+      justifyContent="flex-end"
       width="100vw"
       minWidth={290}
       position="fixed"
-      zIndex={3}
-      backgroundColor="var(--grey-background-color)"
+      zIndex={1}
+      py={18}
+      pr={80}
+      backgroundColor="var(--black-background-color)"
     >
-      <Box
-        display="flex"
-        position="relative"
-        alignItems="center"
-        justifyContent="space-between"
-        padding="0 25px 0 20px"
-        height={80}
-        maxHeight={80}
-        backgroundColor="var(--grey-background-color);"
-      >
-        <></>
+      <Box display="flex" alignItems="center">
+        <AuthButtons />
       </Box>
-      <NavBar />
     </Box>
   );
 };

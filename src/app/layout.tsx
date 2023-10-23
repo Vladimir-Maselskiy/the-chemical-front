@@ -1,8 +1,11 @@
 'use client';
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Merriweather } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const merriweather = Merriweather({
+  weight: ['300', '700'],
+  subsets: ['latin'],
+});
 
 import { Header } from '@/components/Header/Header';
 import StyledComponentsRegistry from '@/lib/registry';
@@ -19,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={merriweather.className}>
         <StyledComponentsRegistry>
           <Header />
           {children}
