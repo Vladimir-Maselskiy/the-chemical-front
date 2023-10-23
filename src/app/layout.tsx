@@ -10,6 +10,7 @@ const merriweather = Merriweather({
 import { Header } from '@/components/Header/Header';
 import StyledComponentsRegistry from '@/lib/registry';
 import { Box } from '@/components/Box/Box';
+import { UserWrapper } from '@/context/state';
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -23,21 +24,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={merriweather.className} style={{ paddingTop: 80 }}>
-        <StyledComponentsRegistry>
-          <Box
-            width="100%"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-          >
-            <Box width="100%" maxWidth={1440}>
-              <Header />
-              {children}
+      <UserWrapper>
+        <body className={merriweather.className} style={{ paddingTop: 80 }}>
+          <StyledComponentsRegistry>
+            <Box
+              width="100%"
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+            >
+              <Box width="100%" maxWidth={1440}>
+                <Header />
+                {children}
+              </Box>
             </Box>
-          </Box>
-        </StyledComponentsRegistry>
-      </body>
+          </StyledComponentsRegistry>
+        </body>
+      </UserWrapper>
     </html>
   );
 }

@@ -12,13 +12,19 @@ import {
 import { TUser } from '@/interfaces/interfaces';
 import { getUser } from '@/utils/api';
 import Link from 'next/link';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUserContext } from '@/context/state';
 
 export default function LoginPage() {
   const ref = useRef<HTMLButtonElement>(null);
   const [isUserError, setIsUserError] = useState(false);
   const router = useRouter();
+  const { user, setUser } = useUserContext();
+
+  useEffect(() => {
+    if (user) router.push('/');
+  }, [user]);
 
   const onInputChange = () => {
     setIsUserError(false);
@@ -47,9 +53,15 @@ export default function LoginPage() {
       console.log('userFromDB', userFromDB);
       if (!userFromDB || userFromDB.error === 'User not found') {
         setIsUserError(true);
-      } else {
+      }
+      if (userFromDB.email) {
+        console.log('userFromDB', userFromDB);
+        localStorage.setItem(
+          'user',
+          JSON.stringify({ email: userFromDB.email })
+        );
+        setUser({ email: userFromDB.email });
         e.target.reset();
-        router.push('/');
       }
     } catch (error) {
       console.log(error);

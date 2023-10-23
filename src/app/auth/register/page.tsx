@@ -12,6 +12,7 @@ import { addNewUserToDB } from '@/utils/api';
 import Link from 'next/link';
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUserContext } from '@/context/state';
 
 export default function RegisterPage() {
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
@@ -21,6 +22,11 @@ export default function RegisterPage() {
   const [userEmailError, setUserEmailError] = useState(false);
   const ref = useRef<HTMLButtonElement>(null);
   const router = useRouter();
+  const { user, setUser } = useUserContext();
+
+  useEffect(() => {
+    if (user) router.push('/');
+  }, [user]);
 
   useEffect(() => {
     if (password1Input === password2Input && password1Input.length > 3) {
@@ -71,7 +77,8 @@ export default function RegisterPage() {
         return;
       } else {
         e.target.reset();
-        router.push('/');
+        localStorage.setItem('user', JSON.stringify({ email: res.email }));
+        setUser({ email: res.email });
       }
     } catch (error) {
       console.log(error);

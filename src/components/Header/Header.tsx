@@ -1,9 +1,21 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '../Box/Box';
 import { AuthButtons } from '../AuthButtons/AuthButtons';
+import { useUserContext } from '@/context/state';
+import { LogOutButton } from '../LogOutButton/LogOutButton';
 
 export const Header = () => {
+  const { user, setUser } = useUserContext();
+
+  useEffect(() => {
+    const data = localStorage.getItem('user');
+    if (data) {
+      console.log('data', data);
+      const user = JSON.parse(data);
+      setUser(user);
+    }
+  }, []);
   return (
     <Box
       display="flex"
@@ -18,7 +30,7 @@ export const Header = () => {
       backgroundColor="var(--black-background-color)"
     >
       <Box display="flex" alignItems="center">
-        <AuthButtons />
+        {user ? <LogOutButton /> : <AuthButtons />}
       </Box>
     </Box>
   );
