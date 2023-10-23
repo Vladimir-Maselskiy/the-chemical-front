@@ -58,4 +58,7 @@ export const StyledSubmitButton = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: 1.37;
+  &:disabled {
+    background-color: var(--Background-Title, #e0e0e0);
+  }
 `;
