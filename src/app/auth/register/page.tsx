@@ -19,7 +19,6 @@ export default function RegisterPage() {
   const [password1Input, setPassword1Input] = useState('');
   const [password2Input, setPassword2Input] = useState('');
   const [userEmailError, setUserEmailError] = useState(false);
-  const [userPasswordError, setUserPasswordError] = useState(false);
   const ref = useRef<HTMLButtonElement>(null);
   const router = useRouter();
 
@@ -34,6 +33,7 @@ export default function RegisterPage() {
     switch (name) {
       case 'email':
         setEmailInput(value);
+        setUserEmailError(false);
         break;
       case 'password1':
         setPassword1Input(value);

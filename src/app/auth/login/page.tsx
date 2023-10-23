@@ -10,13 +10,21 @@ import {
   StyledTitle,
 } from '@/components/UserForm/UserForm.styled';
 import { TUser } from '@/interfaces/interfaces';
+import { getUser } from '@/utils/api';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const ref = useRef<HTMLButtonElement>(null);
+  const [isUserError, setIsUserError] = useState(false);
+  const router = useRouter();
 
-  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onInputChange = () => {
+    setIsUserError(false);
+  };
+
+  const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!(e.target instanceof HTMLFormElement)) {
       return;
@@ -34,8 +42,18 @@ export default function LoginPage() {
       user[key] = val;
     }
 
-    console.log('user', user);
-    e.target.reset();
+    try {
+      const userFromDB = await getUser(user);
+      console.log('userFromDB', userFromDB);
+      if (!userFromDB || userFromDB.error === 'User not found') {
+        setIsUserError(true);
+      } else {
+        e.target.reset();
+        router.push('/');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -57,6 +75,7 @@ export default function LoginPage() {
               placeholder="Email"
               pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,4}"
               required
+              onChange={onInputChange}
             ></StyledInput>
           </StyledInputWrapper>
           <StyledInputWrapper>
@@ -68,8 +87,14 @@ export default function LoginPage() {
               pattern=".{4,}"
               placeholder="Password"
               required
+              onChange={onInputChange}
             ></StyledInput>
           </StyledInputWrapper>
+          {isUserError && (
+            <span style={{ color: 'red', fontSize: 14 }}>
+              Incorrect email or password
+            </span>
+          )}
           <StyledInputSpan>Forgot password?</StyledInputSpan>
 
           <StyledSubmitButton type="submit" ref={ref}>
