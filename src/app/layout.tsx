@@ -9,6 +9,7 @@ const merriweather = Merriweather({
 
 import { Header } from '@/components/Header/Header';
 import StyledComponentsRegistry from '@/lib/registry';
+import { Box } from '@/components/Box/Box';
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -22,10 +23,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={merriweather.className}>
+      <body className={merriweather.className} style={{ paddingTop: 80 }}>
         <StyledComponentsRegistry>
-          <Header />
-          {children}
+          <Box
+            width="100%"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <Box width="100%" maxWidth={1440}>
+              <Header />
+              {children}
+            </Box>
+          </Box>
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -8,9 +8,10 @@ export const Header = () => {
     <Box
       display="flex"
       justifyContent="flex-end"
-      width="100vw"
+      width={1440}
       minWidth={290}
       position="fixed"
+      top={0}
       zIndex={1}
       py={18}
       pr={80}
