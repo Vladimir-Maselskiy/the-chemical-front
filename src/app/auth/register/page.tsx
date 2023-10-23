@@ -1,5 +1,6 @@
+'use client';
 import React from 'react';
 
-export const RegisterPage = () => {
+export default function RegisterPage() {
   return <div>page</div>;
-};
+}

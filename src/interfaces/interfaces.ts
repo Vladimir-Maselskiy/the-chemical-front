@@ -8,3 +8,8 @@ export type TDeals = {
   daysLeft: number;
   sold: number;
 };
+
+export type TUser = {
+  email: string;
+  password: string;
+};

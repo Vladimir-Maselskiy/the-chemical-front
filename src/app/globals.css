@@ -6,18 +6,10 @@
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   --first-bg-color: rgb(178, 159, 126);
-  --accent-color-bg-active: rgb(255, 218, 226);
-  --grey-background-color: rgb(245, 245, 245);
-  --grey-border-color: rgb(231, 231, 231);
+  --Background-Title: rgb(224, 224, 224);
   --black-background-color: rgb(23, 34, 52);
-  --grey-text-color: rgb(194, 194, 194);
 
   --white-color: rgb(255, 255, 255);
-
-  --swiper-pagination-color: var(--accent-color);
-  --swiper-navigation-color: var(--text-color);
-
-  --max-container-width: 1440px;
 }
 
 * {
