@@ -10,7 +10,6 @@ import {
   StyledTitle,
 } from './OpenDeals.styled';
 import { TDeals } from '@/interfaces/interfaces';
-import { style } from 'styled-system';
 
 export const OpenDeals = () => {
   const [deals, setDeals] = useState<TDeals[]>([]);
