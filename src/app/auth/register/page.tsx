@@ -12,7 +12,8 @@ import { addNewUserToDB } from '@/utils/api';
 import Link from 'next/link';
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUserContext } from '@/context/state';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/hooks';
+import { setUser } from '@/redux/reducers';
 
 export default function RegisterPage() {
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
@@ -22,7 +23,8 @@ export default function RegisterPage() {
   const [userEmailError, setUserEmailError] = useState(false);
   const ref = useRef<HTMLButtonElement>(null);
   const router = useRouter();
-  const { user, setUser } = useUserContext();
+  const { user } = useAppSelector(state => state);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (user) router.push('/');
@@ -78,7 +80,7 @@ export default function RegisterPage() {
       } else {
         e.target.reset();
         localStorage.setItem('user', JSON.stringify({ email: res.email }));
-        setUser({ email: res.email });
+        dispatch(setUser({ email: res.email }));
       }
     } catch (error) {
       console.log(error);

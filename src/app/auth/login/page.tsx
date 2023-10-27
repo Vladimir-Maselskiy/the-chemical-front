@@ -14,13 +14,15 @@ import { getUser } from '@/utils/api';
 import Link from 'next/link';
 import React, { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUserContext } from '@/context/state';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux/hooks';
+import { setUser } from '@/redux/reducers';
 
 export default function LoginPage() {
   const ref = useRef<HTMLButtonElement>(null);
   const [isUserError, setIsUserError] = useState(false);
   const router = useRouter();
-  const { user, setUser } = useUserContext();
+  const { user } = useAppSelector(state => state);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (user) router.push('/');
@@ -60,7 +62,8 @@ export default function LoginPage() {
           'user',
           JSON.stringify({ email: userFromDB.email })
         );
-        setUser({ email: userFromDB.email });
+        console.log('before dispatch(setUser)');
+        dispatch(setUser({ email: userFromDB.email }));
         e.target.reset();
       }
     } catch (error) {

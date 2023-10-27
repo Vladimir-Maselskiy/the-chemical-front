@@ -1,21 +1,23 @@
 'use client';
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Box } from '../Box/Box';
 import { AuthButtons } from '../AuthButtons/AuthButtons';
 import { useUserContext } from '@/context/state';
 import { LogOutButton } from '../LogOutButton/LogOutButton';
+import { useAppSelector } from '@/hooks/redux/hooks';
 
 export const Header = () => {
-  const { user, setUser } = useUserContext();
+  const { user } = useAppSelector(state => state);
 
-  useEffect(() => {
-    const data = localStorage.getItem('user');
-    if (data) {
-      console.log('data', data);
-      const user = JSON.parse(data);
-      setUser(user);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const data = localStorage.getItem('user');
+  //   if (data) {
+  //     console.log('data', data);
+  //     const user = JSON.parse(data);
+  //     setUser(user);
+  //   }
+  // }, []);
   return (
     <Box
       display="flex"

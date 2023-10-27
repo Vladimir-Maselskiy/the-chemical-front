@@ -1,16 +1,15 @@
 'use client';
 import './globals.css';
 import { Merriweather } from 'next/font/google';
+import { Header } from '@/components/Header/Header';
+import StyledComponentsRegistry from '@/lib/registry';
+import { Box } from '@/components/Box/Box';
+import { Providers } from '@/redux/providers';
 
 const merriweather = Merriweather({
   weight: ['300', '700'],
   subsets: ['latin'],
 });
-
-import { Header } from '@/components/Header/Header';
-import StyledComponentsRegistry from '@/lib/registry';
-import { Box } from '@/components/Box/Box';
-import { UserWrapper } from '@/context/state';
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -24,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <UserWrapper>
+      <Providers>
         <body className={merriweather.className} style={{ paddingTop: 80 }}>
           <StyledComponentsRegistry>
             <Box
@@ -41,7 +40,9 @@ export default function RootLayout({
             </Box>
           </StyledComponentsRegistry>
         </body>
-      </UserWrapper>
+      </Providers>
+
+      {/* </UserWrapper> */}
     </html>
   );
 }
