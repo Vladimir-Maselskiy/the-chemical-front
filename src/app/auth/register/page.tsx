@@ -79,7 +79,6 @@ export default function RegisterPage() {
         return;
       } else {
         e.target.reset();
-        localStorage.setItem('user', JSON.stringify({ email: res.email }));
         dispatch(setUser({ email: res.email }));
       }
     } catch (error) {

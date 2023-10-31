@@ -7,7 +7,6 @@ import { setUser } from '@/redux/reducers';
 export const LogOutButton = () => {
   const dispatch = useAppDispatch();
   const onLogOutButtonClick = () => {
-    localStorage.setItem('user', 'null');
     dispatch(setUser(null));
   };
 

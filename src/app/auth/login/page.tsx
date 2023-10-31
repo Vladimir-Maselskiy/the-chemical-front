@@ -52,17 +52,10 @@ export default function LoginPage() {
 
     try {
       const userFromDB = await getUser(user);
-      console.log('userFromDB', userFromDB);
       if (!userFromDB || userFromDB.error === 'User not found') {
         setIsUserError(true);
       }
       if (userFromDB.email) {
-        console.log('userFromDB', userFromDB);
-        localStorage.setItem(
-          'user',
-          JSON.stringify({ email: userFromDB.email })
-        );
-        console.log('before dispatch(setUser)');
         dispatch(setUser({ email: userFromDB.email }));
         e.target.reset();
       }
