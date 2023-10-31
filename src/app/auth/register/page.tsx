@@ -118,11 +118,11 @@ export default function RegisterPage() {
           <StyledInputWrapper>
             <StyledLabel htmlFor="user-password1"> Password</StyledLabel>
             <StyledInput
+              type="password"
               value={password1Input}
               onChange={onChangeInput}
               id="user-password1"
               name="password1"
-              type="text"
               pattern=".{4,}"
               placeholder="Password"
               required
@@ -135,7 +135,7 @@ export default function RegisterPage() {
               onChange={onChangeInput}
               id="user-password2"
               name="password2"
-              type="text"
+              type="password"
               pattern=".{4,}"
               placeholder="Password"
               required
